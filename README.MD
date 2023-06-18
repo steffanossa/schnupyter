@@ -13,25 +13,6 @@ from panel.interact import interact
 
 
 
-<style>*[data-root-id],
-*[data-root-id] > * {
-  box-sizing: border-box;
-  font-family: var(--jp-ui-font-family);
-  font-size: var(--jp-ui-font-size1);
-  color: var(--vscode-editor-foreground, var(--jp-ui-font-color1));
-}
-
-/* Override VSCode background color */
-.cell-output-ipywidget-background:has(> .cell-output-ipywidget-background
-    > .lm-Widget
-    > *[data-root-id]),
-.cell-output-ipywidget-background:has(> .lm-Widget > *[data-root-id]) {
-  background-color: transparent !important;
-}
-</style>
-
-
-
 <div id='45d28f12-ce8b-4db4-a75c-043694581d03'>
   <div id="efc2cac1-f6e8-4529-ba05-cc45c5908277" data-root-id="45d28f12-ce8b-4db4-a75c-043694581d03" style="display: contents;"></div>
 </div>
