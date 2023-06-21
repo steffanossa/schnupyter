@@ -1,17 +1,28 @@
-import requests
-import json
 import pandas as pd
-my_penguins = pd.read_csv(
-    "data/made_up_penguins.csv"
+from names_dataset import NameDataset
+
+nd = NameDataset()
+
+fems = nd.get_top_names(n=344, gender="Female", country_alpha2="DE")["DE"]["F"]
+
+males = nd.get_top_names(n=344, gender="Male", country_alpha2="DE")["DE"]["M"]
+
+df = pd.read_csv(
+    "data/penguins.csv",
+    index_col=0
 )
 
-my_penguins_as_json = json.dumps(my_penguins)
-url = "http://localhost:5000/predict"
 
-response = requests.post(url, json=my_penguins_as_json)
-if response.status_code == 200:
-    result = response.json()
-    prediction = result['prediction']
-    print('Vorhersage:', prediction)
-else:
-    print('Fehler bei der Anfrage.')
+df["name"] = ""
+i_fem = 0
+i_mal = 0
+for index, row in df.iterrows():
+    if row["sex"] == "female":
+        df.at[index, 'name'] = fems[i_fem]
+        i_fem += 1
+    elif row["sex"] == "male":
+        df.at[index, 'name'] = males[i_mal]
+        i_mal += 1
+
+print(df)
+df.to_csv("data/output.csv", index=False)
